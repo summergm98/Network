@@ -37,8 +37,10 @@ int main(int argc, char *argv[]){
 	char *data;
 	data = (char *) malloc(sizeof(char) * atoi(argv[2]));
 	
-	while(1){
-		printf("> listening to client...\n");
-		recv(client_socket, data, strlen(data), 0);
+	while(recv(client_socket, data, atoi(argv[2]), 0) != -1){
+			printf("> message from client: %s size: %d\n", data, strlen(data));
+			data = 0;
 	}	
+
+	return 0;
 }
