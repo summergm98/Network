@@ -25,18 +25,12 @@ int main(int argc, char *argv[]){
 	}
 	
 	printf("> connection success!\n\n");
-	printf("> send 3 data to server\n");
+	printf("> send a data to server\n");
 	
 	int byte_sent;
 	if( (byte_sent = send(client_socket, "0123456789", strlen("0123456789"), 0)) == -1){
 		printf("> sending '0123456789' failed\n");
 	}
-	
-	if( (byte_sent = send(client_socket, "ABCDEFGHIJ", strlen("ABCDEFGHIJ"), 0)) == -1){
-		printf("> sending 'ABCDEFGHIJ' failed\n");
-	}
 
-	if( (byte_sent = send(client_socket, "KLMNOPQRST", strlen("KLMNOPQRST"), 0)) == -1){
-		printf("> sending 'KLMNOPQRST' failed\n");
-	}
+	return 0;
 }
