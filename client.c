@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 	}
 	
 	printf("> connection success!\n\n");
-	printf("> send a data to server\n");
+	printf("> send 3 datas to server\n");
 	
 	int byte_sent;
 	if( (byte_sent = send(client_socket, "0123456789", strlen("0123456789"), 0)) == -1){
@@ -38,6 +38,17 @@ sleep(1);
 sleep(1);
 	if( (byte_sent = send(client_socket, "KLMNOPQRST", strlen("KLMNOPQRST"), 0)) == -1){
 		printf("> sending 'KLMNOPQRST' failed\n");
+	}
+
+	char message[1024];
+	
+	while(1){
+		fputs("> input messages(q to quit): ", stdout);
+		fgets(message, 1024, stdin);
+
+		if(!strcmp(message, "q\n")) break;
+		write(client_socket, message, strlen(message));
+
 	}
 
 	return 0;
