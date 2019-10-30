@@ -32,18 +32,18 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
 	
+	sleep(5);
+	
 	client_socket = accept(server_socket, (struct sockaddr *) &client_addr, &client_addr_size);
 	
 	char *data;
 	data = (char *) malloc(sizeof(char) * atoi(argv[2]));
-	
+	int recv_len;
+
 	while(1){
-		if(recv(client_socket, data, atoi(argv[2]), 0) == -1){
-			printf("> no more data from client\n");
-			exit(1);
+		if((recv_len = recv(client_socket, data, atoi(argv[2]), 0)) > 0){
+			write(1, data, recv_len);
 		}
-		printf("> message from client: %s size: %d\n", data, strlen(data));
-		data = 0;
 	}
 
 	return 0;
